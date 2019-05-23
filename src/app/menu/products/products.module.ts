@@ -7,6 +7,10 @@ import { IonicModule } from '@ionic/angular';
 
 import { ProductsPage } from './products.page';
 
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
 const routes: Routes = [
   {
     path: '',
@@ -19,6 +23,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ProductsPage]

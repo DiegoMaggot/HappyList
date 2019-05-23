@@ -1,9 +1,26 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>menu</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+    <ion-tabs>
+        <ion-tab-bar slot="bottom">
+            <ion-tab-button tab="shopping-lists">
+                <ion-icon name="paper"></ion-icon>
+                <ion-label>Listas</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="recipes">
+                <ion-icon name="bookmarks"></ion-icon>
+                <ion-label>Receitas</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="products">
+                <ion-icon name="basket"></ion-icon>
+                <ion-label>Produtos</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="cart">
+                <ion-icon name="cart"></ion-icon>
+                <ion-label>Carrinho</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="historic">
+                <ion-icon name="calendar"></ion-icon>
+                <ion-label>Histórico</ion-label>
+            </ion-tab-button>
+        </ion-tab-bar>
+    </ion-tabs>
 </ion-content>

@@ -1,9 +1,59 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>new-product</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button text=" "></ion-back-button>
+        </ion-buttons>
+        <ion-title>Novo Produto</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+    <div class="picture centralized"><img src="https://cdn.dribbble.com/users/10562/screenshots/4766707/nationalcameraday_dribbble.jpg"></div>
+    <button mat-icon-button class="camera-btn"><mat-icon>camera_alt</mat-icon></button>
+    <div class="container">
+        <mat-form-field>
+            <input matInput [(ngModel)]="newProduct.name" placeholder="Nome">
+        </mat-form-field>
+        <mat-form-field class="mid">
+            <input matInput placeholder="Peso" type="number" [(ngModel)]="newProduct.weight">
+        </mat-form-field>
+        <mat-form-field class="mid">
+            <mat-select [(ngModel)]="newProduct.measureUnit" placeholder="Unidade de medida" selected="">
+                <mat-option value="Kg">Quilograma</mat-option>
+                <mat-option value="g">Grama</mat-option>
+                <mat-option value="L">Litro</mat-option>
+                <mat-option value="ml">Mililitro</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Quantidade" type="number" [(ngModel)]="newProduct.quantity">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Preço" type="number" [(ngModel)]="newProduct.price">
+            <span matPrefix>R$&nbsp;</span>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select [(ngModel)]="newProduct.categoryUID" placeholder="Categoria do produto">
+                <mat-option *ngFor="let category of categories" [value]="category.uid">{{category.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button (click)="categoryRegister()" class="cat-btn">
+                                Nova categoria
+                            </button>
+        <div *ngIf="addCategory">
+            <mat-form-field class="new-cat">
+                <input matInput [(ngModel)]="newCategory.name" placeholder="Nome da Categoria">
+            </mat-form-field>
+            <button mat-icon-button class="new-cat-btn" (click)="insertCategory()" [disabled]="!newCategory.name">
+                                    <mat-icon>check</mat-icon>
+                                </button>
+            <button mat-icon-button class="new-cat-btn" (click)="cancelCategoryRegister()">
+                                    <mat-icon>close</mat-icon>
+                    </button>
+        </div>
+        <button mat-raised-button class="btn-confirm" (click)="save()" [disabled]="!newProduct.name || !newProduct.categoryUID || !newProduct.weight || !newProduct.measureUnit || !newProduct.price || newProduct.quantity <= 0">
+                                    Salvar
+                    </button>
+    </div>
 </ion-content>
