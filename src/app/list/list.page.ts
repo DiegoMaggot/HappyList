@@ -29,7 +29,9 @@ export class ListPage implements OnInit {
       });
     }
   }
-
+  test(iconName: string) {
+    console.log(iconName);
+  }
   ngOnInit() {
   }
   // add back when alpha.4 is out

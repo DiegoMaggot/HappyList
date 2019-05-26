@@ -19,11 +19,11 @@ const routes: Routes = [
                 {
                     path: 'edit-shopping-list',
                     loadChildren: './shopping-lists/edit-shopping-list/edit-shopping-list.module#EditShoppingListPageModule'
-                },
-                {
-                    path: ':listId',
-                    loadChildren: './shopping-lists/shopping-list/shopping-list.module#ShoppingListPageModule'
                 }
+                // {
+                //     path: ':listId',
+                //     loadChildren: './shopping-lists/shopping-list/shopping-list.module#ShoppingListPageModule'
+                // }
             ]},
             {   path: 'recipes', children: [
                 {
@@ -37,11 +37,11 @@ const routes: Routes = [
                 {
                     path: 'edit-recipe',
                     loadChildren: './recipes/edit-recipe/edit-recipe.module#EditRecipePageModule'
-                },
-                {
-                    path: ':recipeId',
-                    loadChildren: './recipes/recipe/recipe.module#RecipePageModule'
                 }
+                // {
+                //     path: ':recipeId',
+                //     loadChildren: './recipes/recipe/recipe.module#RecipePageModule'
+                // }
             ]},
             {   path: 'products', children: [
                 {
@@ -55,11 +55,11 @@ const routes: Routes = [
                 {
                     path: 'edit-product',
                     loadChildren: './products/edit-product/edit-product.module#EditProductPageModule'
-                },
-                {
-                    path: ':productId',
-                    loadChildren: './products/product/product.module#ProductPageModule'
                 }
+                // {
+                //     path: ':productId',
+                //     loadChildren: './products/product/product.module#ProductPageModule'
+                // }
             ]},
             {   path: 'cart', children: [
                 {

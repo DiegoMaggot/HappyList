@@ -1,9 +1,21 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>shopping-lists</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title text-center>Minhas listas</ion-title>
+        <ion-buttons slot="end">
+            <ion-button routerLink='new-shopping-list'>
+                <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <div class="no-lists" *ngIf="!lists">
+        <ion-img src="../../../assets/img/shopping.png" class="image"></ion-img>
+        <div class="content centralized" padding>
+            <p>Você não possuí nenhuma lista.</p>
+            <h4>Crie uma nova lista agora mesmo.</h4>
+            <p>As listas de compras servem para se organizar na hora das compras, ela ajuda a não esquecer nenhum item, a controlar os impulsos de consumos desnecessários, além de garantir economia e satisfação</p>
+        </div>
+    </div>
 </ion-content>

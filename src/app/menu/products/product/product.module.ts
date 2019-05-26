@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { ProductPage } from './product.page';
 
+import { MatCardModule } from '@angular/material/card';
+
 const routes: Routes = [
   {
     path: '',
@@ -19,6 +21,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    MatCardModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ProductPage]

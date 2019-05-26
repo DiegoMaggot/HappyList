@@ -1,0 +1,38 @@
+.image ion-img {
+    height: 100%;
+    overflow: hidden;
+}
+
+.content {
+    width: 90%;
+    margin-top: -20px;
+    p {
+        text-align: justify!important;
+    }
+}
+
+// .card {
+//     --background: #fff;
+//     margin-top: -20px;
+//     width: 85%;
+//     ion-card-header {
+//         h4 {
+//             margin-top: -15px;
+//         }
+//     }
+//     ion-card-content {
+//         margin-top: -20px;
+//         text-align: justify;
+//     }
+// }
+.no-lists {
+    margin-top: 50px;
+}
+
+@media (min-width: 568px) {
+    .image {
+        width: 40%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

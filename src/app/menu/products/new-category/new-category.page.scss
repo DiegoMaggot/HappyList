@@ -1,0 +1,50 @@
+mat-card {
+    position: absolute!important;
+}
+
+.selected-icon {
+    width: 65px;
+    height: 65px;
+    margin-top: 100px;
+    margin-left: 75%;
+    mat-icon {
+        width: 50px;
+        height: 60px;
+        margin-left: -10px;
+        margin-top: -10px;
+    }
+}
+
+.container {
+    width: 95%;
+    height: 245px;
+    padding: 10px;
+    margin-top: 150px;
+    margin-left: 2.5%;
+    background: #ffff;
+    ion-label {
+        margin-top: 5px;
+    }
+    mat-form-field {
+        width: 100%;
+    }
+    .icon {
+        width: 50%;
+    }
+    ion-slides {
+        margin-top: 10px;
+    }
+    mat-icon {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (min-width: 568px) {
+    .container {
+        margin-top: 65px;
+    }
+    .selected-icon {
+        margin-top: 30px!important;
+    }
+}

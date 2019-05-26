@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/model/category';
 import { Product } from 'src/app/model/product';
 import { DBService } from 'src/app/services/db.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { NewCategoryPage } from '../new-category/new-category.page';
 
 @Component({
   selector: 'app-new-product',
@@ -12,13 +14,27 @@ import { ToastController } from '@ionic/angular';
 export class NewProductPage implements OnInit {
   newProduct: Product;
   categories: Category[];
-  newCategory: Category;
-  addCategory: boolean;
-
-  constructor(private dbService: DBService, public toastController: ToastController) {
+  loadList: boolean;
+  constructor(private dbService: DBService,
+              public toastController: ToastController,
+              private router: Router,
+              private modalController: ModalController) {
     this.newProduct = new Product();
-    this.newCategory = new Category();
-    this.loadCategories();
+    this.newProduct.name = '';
+    this.init();
+  }
+
+  private async init() {
+    this.dbService.listAndWatch('/categories')
+    .subscribe(data => this.loadData());
+  }
+
+  private async loadData() {
+    if (!this.loadList) {
+      this.loadList = true;
+      await this.loadCategories();
+      this.loadList = false;
+    }
   }
 
   private async loadCategories() {
@@ -38,6 +54,7 @@ export class NewProductPage implements OnInit {
     this.dbService.insertInList<Product>('/products', this.newProduct)
       .then(() => {
         this.presentToast('Produto salvo com sucesso!');
+        this.router.navigate(['./menu/tabs/products']);
       }).catch(error => {
         console.log(error);
       });
@@ -62,33 +79,9 @@ export class NewProductPage implements OnInit {
   //     });
   // }
 
-  categoryRegister() {
-    if (this.addCategory) {
-      this.addCategory = false;
-    } else {
-      this.addCategory = true;
-    }
+  back() {
+    this.router.navigate(['./menu/tabs/products']);
   }
-
-  cancelCategoryRegister() {
-    this.addCategory = false;
-  }
-
-  insertCategory() {
-    this.dbService.insertInList<Category>('/categories', this.newCategory)
-      .then(() => {
-        this.presentToast('Categoria salva');
-        this.loadCategories();
-        this.newCategory = new Category();
-        this.addCategory = false;
-      }).catch(error => {
-        console.log(error);
-      });
-  }
-
-  // back() {
-  //   this.modalController.dismiss();
-  // }
 
   async presentToast(message: string) {
     const toast = await this.toastController.create({
@@ -98,6 +91,14 @@ export class NewProductPage implements OnInit {
     toast.present();
   }
 
+  async newCategoryPage() {
+    const modal = await this.modalController.create({
+      component: NewCategoryPage,
+      componentProps: {
+      }
+    });
+    return await modal.present();
+  }
   ngOnInit() {
     // if (this.editProduct) {
     //   this.newProduct = JSON.parse(JSON.stringify(this.editProduct));

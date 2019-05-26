@@ -1,9 +1,11 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button text=" "></ion-back-button>
+            <ion-button (click)="back()">
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
         </ion-buttons>
-        <ion-title>new-recipe</ion-title>
+        <ion-title text-center>Nova receita</ion-title>
     </ion-toolbar>
 </ion-header>
 

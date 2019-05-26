@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController, ModalController } from '@ionic/angular';
 import { Product } from 'src/app/model/product';
 import { Category } from 'src/app/model/category';
 import { DBService } from 'src/app/services/db.service';
+import { ProductPage } from './product/product.page';
 
 @Component({
   selector: 'app-products',
@@ -14,21 +15,32 @@ export class ProductsPage implements OnInit {
   products: Product[];
   categories: Category[];
   loading: boolean;
+  loadList: boolean;
   sliderConfig = {
-    spaceBetwen: 10,
-    centeredSlides: false,
-    slidesPerView: 1.1,
+    spaceBetwen: 5,
+    centeredSlides: true,
+    slidesPerView: 1.2,
     zoom: false
   };
-
-  constructor(private dbService: DBService, public toastController: ToastController) {
+  constructor(public modalController: ModalController, private dbService: DBService, public toastController: ToastController, ) {
     this.init();
   }
 
   private async init() {
     this.loading = true;
-    await this.loadCategories();
-    await this.loadProducts();
+    this.dbService.listAndWatch('/categories')
+    .subscribe(data => this.loadData());
+    this.dbService.listAndWatch('/products')
+    .subscribe(data => this.loadData());
+  }
+
+  private async loadData() {
+    if (!this.loadList) {
+      this.loadList = true;
+      await this.loadCategories();
+      await this.loadProducts();
+      this.loadList = false;
+    }
   }
 
   private async loadProducts() {
@@ -87,8 +99,15 @@ export class ProductsPage implements OnInit {
       this.loadProducts();
     }
   }
-  n() {
-    console.log('a');
+
+  async details(product: Product) {
+    const modal = await this.modalController.create({
+      component: ProductPage,
+      componentProps: {
+        product
+      }
+    });
+    return await modal.present();
   }
   ngOnInit() {
   }

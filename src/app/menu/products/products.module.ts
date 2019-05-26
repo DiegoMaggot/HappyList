@@ -10,6 +10,8 @@ import { ProductsPage } from './products.page';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ProductPage } from './product/product.page';
+import { MatCardModule } from '@angular/material/card';
 
 const routes: Routes = [
   {
@@ -26,8 +28,10 @@ const routes: Routes = [
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
+    MatCardModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ProductsPage]
+  declarations: [ProductsPage, ProductPage],
+  entryComponents: [ProductPage]
 })
 export class ProductsPageModule {}

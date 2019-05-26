@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { List } from '../../model/list';
 
 @Component({
   selector: 'app-shopping-lists',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shopping-lists.page.scss'],
 })
 export class ShoppingListsPage implements OnInit {
-
+  lists: List[];
   constructor() { }
 
   ngOnInit() {

@@ -13,6 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
+import { NewCategoryPage } from '../new-category/new-category.page';
+import { MatCardModule } from '@angular/material/card';
 
 const routes: Routes = [
   {
@@ -32,8 +34,10 @@ const routes: Routes = [
     MatFormFieldModule,
     MatIconModule,
     MatTooltipModule,
+    MatCardModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [NewProductPage]
+  declarations: [NewProductPage, NewCategoryPage],
+  entryComponents: [NewCategoryPage]
 })
 export class NewProductPageModule {}
