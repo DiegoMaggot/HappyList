@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../../../model/category';
-import { Product } from '../../../model/product';
-import { DBService } from '../../../services/db.service';
+import { Category } from 'src/app/model/category';
+import { Product } from 'src/app/model/product';
+import { DBService } from 'src/app/services/db.service';
 import { ToastController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { NewCategoryPage } from '../new-category/new-category.page';
