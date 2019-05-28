@@ -15,32 +15,22 @@ export class ProductsPage implements OnInit {
   products: Product[];
   categories: Category[];
   loading: boolean;
-  loadList: boolean;
   sliderConfig = {
     spaceBetwen: 5,
     centeredSlides: true,
     slidesPerView: 1.2,
     zoom: false
   };
-  constructor(public modalController: ModalController, private dbService: DBService, public toastController: ToastController, ) {
+  constructor(public modalController: ModalController, private dbService: DBService, public toastController: ToastController) {
     this.init();
   }
 
   private async init() {
     this.loading = true;
     this.dbService.listAndWatch('/categories')
-    .subscribe(data => this.loadData());
+    .subscribe(data => this.loadCategories());
     this.dbService.listAndWatch('/products')
-    .subscribe(data => this.loadData());
-  }
-
-  private async loadData() {
-    if (!this.loadList) {
-      this.loadList = true;
-      await this.loadCategories();
-      await this.loadProducts();
-      this.loadList = false;
-    }
+    .subscribe(data => this.loadProducts());
   }
 
   private async loadProducts() {
