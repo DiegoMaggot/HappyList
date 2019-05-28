@@ -4,5 +4,5 @@ export class List {
     uid: string;
     name: string;
     products: Product[];
-    total: number;
+    // total: number;
 }
