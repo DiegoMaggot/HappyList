@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 const routes: Routes = [
   {

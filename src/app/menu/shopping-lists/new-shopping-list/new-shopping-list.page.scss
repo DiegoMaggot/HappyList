@@ -1,32 +1,81 @@
+// .container {
+//     width: 95%;
+//     // height: 245px;
+//     padding: 10px;
+//     margin-top: 10px;
+//     margin-left: 2.5%;
+//     background: #ffff;
+//     ion-label {
+//         margin-top: 5px;
+//     }
+//     mat-form-field {
+//         width: 100%;
+//     }
+//     .icon {
+//         width: 50%;
+//     }
+//     .mid {
+//         width: 50%;
+//     }
+// }
+// .addProduct {
+//     mat-form-field {
+//         width: 85%;
+//     }
+// }
+// @media (min-width: 568px) {
+//     .container {
+//         margin-top: 65px;
+//     }
+// }
 .container {
-    width: 95%;
-    // height: 245px;
-    padding: 10px;
     margin-top: 10px;
-    margin-left: 2.5%;
-    background: #ffff;
-    ion-label {
-        margin-top: 5px;
-    }
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.mid {
     mat-form-field {
-        width: 100%;
-    }
-    .icon {
-        width: 50%;
-    }
-    .mid {
         width: 50%;
     }
 }
 
-.addProduct {
-    mat-form-field {
-        width: 85%;
-    }
+.add {
+    background: #26bb70c2;
+    color: rgb(255, 255, 255);
+    width: 100%;
 }
 
-@media (min-width: 568px) {
-    .container {
-        margin-top: 65px;
-    }
+.choiceOption {
+    margin-top: 10px;
+    width: 40%;
+    margin-left: 5%;
+    background: #32beb7b7;
+    color: #fff;
+}
+
+.newOption {
+    margin-top: 10px;
+    width: 40%;
+    margin-left: 10%;
+    background: #32be71bb;
+    color: #fff;
+}
+
+.options {
+    margin-top: 10px;
+}
+
+.stepperBtn {
+    margin-top: 15px;
+}
+
+.stepperBtn {
+    margin-top: 15px;
+}
+
+stepperBtn {
+    margin-top: 15px;
 }
