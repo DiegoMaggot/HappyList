@@ -22,7 +22,7 @@ export class ProductsPage implements OnInit {
     slidesPerView: 1.2,
     zoom: false
   };
-  constructor(public modalController: ModalController, private dbService: DBService, public toastController: ToastController, ) {
+  constructor(public modalController: ModalController, private dbService: DBService, public toastController: ToastController) {
     this.init();
   }
 
