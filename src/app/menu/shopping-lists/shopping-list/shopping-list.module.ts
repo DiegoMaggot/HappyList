@@ -6,6 +6,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ShoppingListPage } from './shopping-list.page';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [
   {
@@ -19,6 +23,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    MatCardModule,
+    MatListModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ShoppingListPage]

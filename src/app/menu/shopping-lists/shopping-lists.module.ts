@@ -8,10 +8,10 @@ import { IonicModule } from '@ionic/angular';
 import { ShoppingListsPage } from './shopping-lists.page';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [
   {
@@ -24,11 +24,11 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    MatListModule,
-    MatExpansionModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ShoppingListsPage]

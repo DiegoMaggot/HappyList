@@ -10,7 +10,7 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-new-shopping-list',
   templateUrl: './new-shopping-list.page.html',
-  styleUrls: ['./new-shopping-list.page.scss'],
+  styleUrls: ['./new-shopping-list.page.scss']
 })
 export class NewShoppingListPage implements OnInit {
   loading: boolean;
@@ -26,13 +26,18 @@ export class NewShoppingListPage implements OnInit {
     this.init();
   }
 
-  ngOnInit() {
+  init() {
+    this.initData();
+    this.loadProductsList();
+  }
+  initData() {
     this.newOption = false;
     this.selectOption = false;
     this.resetShopList();
+    this.resetItem();
   }
 
-  private async init() {
+  private async loadProductsList() {
     this.loading = true;
     this.dbService.listAndWatch('/products')
     .subscribe(data => this.loadProducts());
@@ -51,34 +56,40 @@ export class NewShoppingListPage implements OnInit {
   addProduct(product: Product) {
     product.quantity = 0;
     product['uidTemporary'] = this.uidTemporary;
+    this.uidTemporary++;
     if (this.validateProducts(product, this.newList.products)) {
-      this.presentToast(`O produto ${product.name} já foi adicionado a sua lista`);
+      this.presentToast(`O produto "${product.name}" já foi adicionado a sua lista`);
     } else {
       this.newList.products.push(product);
+      this.products = this.products.filter(item => item.uid !== product.uid);
       this.resetItem();
-      this.uidTemporary++;
-      this.presentToast(`${product.name} adicionado a lista`);
+      this.presentToast(`"${product.name}" foi adicionado a lista`);
+    }
+    if (this.products.length === 0) {
+      this.selectOption = false;
     }
   }
 
-  addQuantity(product: Product) {
-    this.newList.products.forEach(item => {
-      if (item['uidTemporary'] === product['uidTemporary']) {
-        item.quantity++;
+  saveList() {
+    this.newList.products.forEach(product => {
+      delete product['uidTemporary'];
+      if (product.uid === undefined && !this.validateProducts(product, this.products)) {
+          this.dbService.insertInList<Product>('/products', product)
+        .then(() => {
+        }).catch(error => {
+          console.log(error);
+        });
       }
     });
-  }
-  removeQuantity(product: Product) {
-    this.newList.products.forEach(item => {
-      if (item['uidTemporary'] === product['uidTemporary'] && item.quantity > 0) {
-        item.quantity--;
-      }
-    });
-  }
-
-  deleteItem(product: Product) {
-    this.newList.products = this.newList.products.filter(item => item['uidTemporary'] !== product['uidTemporary']);
-    this.presentToast(`${product.name} removido da lista`);
+    this.newList.favorite = false;
+    this.dbService.insertInList<List>('/shoppingLists', this.newList)
+      .then(() => {
+        this.presentToast('lista salva com sucesso!');
+        this.init();
+        this.router.navigate(['./menu/tabs/shopping-lists']);
+      }).catch(error => {
+        console.log(error);
+      });
   }
 
   validateProducts(product: Product, products: Product[]) {
@@ -89,6 +100,26 @@ export class NewShoppingListPage implements OnInit {
         }
     });
     return exists;
+  }
+
+  setQuantity(product: Product, some: boolean) {
+    this.newList.products.forEach(item => {
+      if (item['uidTemporary'] === product['uidTemporary']) {
+        if (some) {
+          item.quantity++;
+        } else if (!some && item.quantity > 0) {
+          item.quantity--;
+        }
+      }
+    });
+  }
+
+  deleteItem(product: Product) {
+    this.newList.products = this.newList.products.filter(item => item['uidTemporary'] !== product['uidTemporary']);
+    if (product.uid !== undefined) {
+      this.products.push(product);
+    }
+    this.presentToast(`${product.name} removido da lista`);
   }
 
   resetItem() {
@@ -112,27 +143,6 @@ export class NewShoppingListPage implements OnInit {
     if (this.newOption) { this.newOption = false; }
   }
 
-  saveList() {
-    this.newList.products.forEach(product => {
-      delete product['uidTemporary'];
-      if (this.validateProducts(product, this.products)) {
-          this.dbService.insertInList<Product>('/products', product)
-        .then(() => {
-        }).catch(error => {
-          console.log(error);
-        });
-      }
-    });
-    this.dbService.insertInList<List>('/shoppingLists', this.newList)
-      .then(() => {
-        this.presentToast('lista salva com sucesso!');
-        this.resetShopList();
-        this.router.navigate(['./menu/tabs/shopping-lists']);
-      }).catch(error => {
-        console.log(error);
-      });
-  }
-
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,
@@ -143,5 +153,8 @@ export class NewShoppingListPage implements OnInit {
 
   back() {
     this.router.navigate(['./menu/tabs/shopping-lists']);
+  }
+
+  ngOnInit() {
   }
 }

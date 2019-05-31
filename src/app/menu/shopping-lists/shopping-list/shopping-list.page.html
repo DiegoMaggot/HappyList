@@ -1,9 +1,36 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>shopping-list</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="back()">
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Lista de Compras</ion-title>
+    </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+    <div class="cards">
+        <mat-card class="centralized top">
+            <mat-card-title>{{list.name}}</mat-card-title>
+        </mat-card>
+        <ion-card class="subtitle">
+            <mat-progress-spinner color="primary" mode='determinate' [value]='listPercentage(products.selectedOptions.selected.length)' style="width: 40px; height: 40px;">
+            </mat-progress-spinner>
+            <ion-item lines="none" #products>
+                <ion-icon name="trash" slot="end" (click)="delete(products.selectedOptions.selected)" color="danger" disabled="products.selectedOptions.selected.length == 0"></ion-icon>
+                <ion-label>
+                    <p>
+                        {{listPercentage(products.selectedOptions.selected.length)}}%
+                    </p>
+                </ion-label>
+            </ion-item>
+        </ion-card>
+        <div class="centralized mid">
+            <mat-selection-list #products [(ngModel)]="selectedOptions">
+                <mat-list-option @buttons *ngFor="let product of list.products" [value]="product" color="primary" style="padding: 0">
+                    {{product.name}}
+                </mat-list-option>
+            </mat-selection-list>
+        </div>
+    </div>
 </ion-content>

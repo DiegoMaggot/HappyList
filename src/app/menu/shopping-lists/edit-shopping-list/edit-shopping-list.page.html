@@ -1,9 +1,14 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>edit-shopping-list</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="back()">
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>edit-shopping-list</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    {{list.name}}
 </ion-content>

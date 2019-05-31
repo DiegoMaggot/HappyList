@@ -1,23 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { List } from '../../model/list';
 import { DBService } from 'src/app/services/db.service';
+import { ToastController } from '@ionic/angular';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-lists',
   templateUrl: './shopping-lists.page.html',
   styleUrls: ['./shopping-lists.page.scss'],
+  animations: [
+    trigger('load', [
+      transition(':enter', [
+      style({ transform: 'scale(0.5)', opacity: 0 }),
+      animate('0.8s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+      style({ transform: 'scale(1)', opacity: 1 }))
+      ])
+    ])
+  ]
 })
 
-export class ShoppingListsPage implements OnInit {
-  favorite: string;
+export class ShoppingListsPage {
   loading: boolean;
-  loadList: boolean;
-  selectedOptions: any[];
   lists: List[];
-
-  constructor(private dbService: DBService) {
+  constructor(private dbService: DBService, private toastController: ToastController, private router: Router) {
     this.init();
-    this.favorite = 'favorite_border';
   }
 
   private async init() {
@@ -36,14 +43,46 @@ export class ShoppingListsPage implements OnInit {
     });
   }
 
-  setFavorite() {
-    this.favorite = this.favorite === 'favorite_border' ? 'favorite' : 'favorite_border';
+  setFavorite(list: List) {
+    list.favorite = list.favorite === false ? true : false;
+    this.dbService.update('/shoppingLists', list.uid, list)
+    .then(() => {
+      if (list.favorite) {
+        this.presentToast(`a lista "${list.name}" foi adicionada as favoritas`);
+      } else {
+        this.presentToast(`a lista "${list.name}" foi removida das favoritas`);
+      }
+    }).catch(error => {
+        console.log(error);
+    });
   }
 
-  ngOnInit() {
+  getQuantity(list: List) {
+    return list.products.map(product => product.quantity).reduce(((totalQuantity, quantity) => totalQuantity += quantity));
   }
 
-  delete() {
-    console.table(this.selectedOptions);
+  remove(uid: string) {
+    this.dbService.remove('/shoppingLists', uid)
+    .then(() => {
+      this.presentToast('Produto removido com sucesso');
+      this.loadLists();
+    });
+  }
+
+  goTo(path: string, list: List) {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        list
+      }
+    };
+    this.router.navigate([`./menu/tabs/shopping-lists/${path}/:${list.name}`], navigationExtras);
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000
+    });
+    toast.present();
   }
 }

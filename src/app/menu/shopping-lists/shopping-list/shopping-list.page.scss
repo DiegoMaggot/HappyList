@@ -1,0 +1,29 @@
+.top {
+    width: 100%;
+    text-align: center;
+}
+
+.subtitle {
+    margin-left: 60%;
+    margin-top: -10px;
+    width: 150px;
+    text-align: center;
+    ion-item {
+        .products {
+            margin-top: 7px;
+        }
+        .icon {
+            mat-icon {
+                position: absolute;
+            }
+        }
+    }
+}
+
+.mid {
+    border-radius: 10px;
+    margin-top: -10px;
+    position: inherit;
+    padding: 10px;
+    width: 100%;
+}

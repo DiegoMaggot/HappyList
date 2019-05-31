@@ -11,20 +11,6 @@
     }
 }
 
-// .card {
-//     --background: #fff;
-//     margin-top: -20px;
-//     width: 85%;
-//     ion-card-header {
-//         h4 {
-//             margin-top: -15px;
-//         }
-//     }
-//     ion-card-content {
-//         margin-top: -20px;
-//         text-align: justify;
-//     }
-// }
 .no-lists {
     margin-top: 50px;
 }
@@ -34,5 +20,17 @@
         width: 40%;
         margin-left: auto;
         margin-right: auto;
+    }
+}
+
+ion-item {
+    .products {
+        margin-left: 13%;
+        margin-top: 7px;
+    }
+    .icon {
+        mat-icon {
+            position: absolute;
+        }
     }
 }

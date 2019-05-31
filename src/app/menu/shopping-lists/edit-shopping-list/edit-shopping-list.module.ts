@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { EditShoppingListPage } from './edit-shopping-list.page';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    MatIconModule,
     RouterModule.forChild(routes)
   ],
   declarations: [EditShoppingListPage]

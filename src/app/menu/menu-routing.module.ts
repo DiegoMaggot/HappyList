@@ -13,17 +13,17 @@ const routes: Routes = [
                     loadChildren: './shopping-lists/shopping-lists.module#ShoppingListsPageModule'
                 },
                 {
-                    path: 'new-shopping-list',
+                    path: 'new-list',
                     loadChildren: './shopping-lists/new-shopping-list/new-shopping-list.module#NewShoppingListPageModule'
                 },
                 {
-                    path: 'edit-shopping-list',
+                    path: 'edit/:list',
                     loadChildren: './shopping-lists/edit-shopping-list/edit-shopping-list.module#EditShoppingListPageModule'
+                },
+                {
+                    path: 'details/:list',
+                    loadChildren: './shopping-lists/shopping-list/shopping-list.module#ShoppingListPageModule'
                 }
-                // {
-                //     path: ':listId',
-                //     loadChildren: './shopping-lists/shopping-list/shopping-list.module#ShoppingListPageModule'
-                // }
             ]},
             {   path: 'recipes', children: [
                 {
