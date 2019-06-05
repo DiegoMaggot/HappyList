@@ -3,16 +3,21 @@
     overflow: hidden;
 }
 
+.spinner {
+    margin-top: 45%;
+}
+
 .content {
-    width: 90%;
+    width: 100%;
     margin-top: -20px;
-    p {
-        text-align: justify!important;
+    h4 {
+        width: 100%;
+        font-size: 20px;
     }
 }
 
 .no-lists {
-    margin-top: 50px;
+    margin-top: 30%;
 }
 
 @media (min-width: 568px) {
@@ -24,8 +29,9 @@
 }
 
 ion-item {
+    --background: none;
     .products {
-        margin-left: 13%;
+        margin-left: 15%;
         margin-top: 7px;
     }
     .icon {

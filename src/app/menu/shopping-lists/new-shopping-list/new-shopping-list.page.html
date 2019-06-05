@@ -1,12 +1,12 @@
 <ion-header>
-    <ion-toolbar>
+    <mat-toolbar class="bc-light-blue">
         <ion-buttons slot="start">
-            <ion-button (click)="back()">
+            <ion-button (click)="back()" color="light">
                 <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
             </ion-button>
         </ion-buttons>
-        <ion-title text-center>Nova lista</ion-title>
-    </ion-toolbar>
+        <ion-title text-center class="title fc-light">Nova lista</ion-title>
+    </mat-toolbar>
 </ion-header>
 
 <ion-content>
@@ -54,7 +54,7 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <button mat-raised-button (click)="addProduct(newProduct)" [disabled]="newProduct.name == ''" class="add">Adicionar Produto</button>
+                <button mat-raised-button (click)="saveAndAddProduct()" [disabled]="!newProduct.name || !newProduct.weight || !newProduct.measureUnit || validateProducts(newProduct, this.newList.products)" class="add">Adicionar Produto</button>
             </div>
             <div class="stepperBtn">
                 <button mat-button matStepperPrevious>Voltar</button>
@@ -64,8 +64,7 @@
         <mat-step>
             <ng-template matStepLabel>Salvar lista</ng-template>
             <ion-item lines="none" no-padding>
-                <ion-label text-center *ngIf="newList.products.length > 0">Meus Produtos</ion-label>
-                <ion-label text-center *ngIf="newList.products.length == 0">Lista vazia</ion-label>
+                <ion-label text-center>{{newList.products.length > 0 ? 'Meus Produtos' : 'Lista vazia'}}</ion-label>
             </ion-item>
             <mat-list role="list">
                 <mat-list-item role="listitem" *ngFor="let product of newList.products">

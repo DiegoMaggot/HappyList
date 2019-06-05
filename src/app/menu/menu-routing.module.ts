@@ -43,24 +43,6 @@ const routes: Routes = [
                 //     loadChildren: './recipes/recipe/recipe.module#RecipePageModule'
                 // }
             ]},
-            {   path: 'products', children: [
-                {
-                    path: '',
-                    loadChildren: './products/products.module#ProductsPageModule'
-                },
-                {
-                    path: 'new-product',
-                    loadChildren: './products/new-product/new-product.module#NewProductPageModule'
-                },
-                {
-                    path: 'edit-product',
-                    loadChildren: './products/edit-product/edit-product.module#EditProductPageModule'
-                }
-                // {
-                //     path: ':productId',
-                //     loadChildren: './products/product/product.module#ProductPageModule'
-                // }
-            ]},
             {   path: 'cart', children: [
                 {
                     path: '',

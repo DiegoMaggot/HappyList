@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { List } from 'src/app/model/list';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { List } from 'src/app/model/list';
+import { DBService } from 'src/app/services/db.service';
+
 import { ToastController } from '@ionic/angular';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { DBService } from 'src/app/services/db.service';
+import { Product } from 'src/app/model/product';
 
 @Component({
   selector: 'app-shopping-list',
@@ -15,12 +18,7 @@ import { DBService } from 'src/app/services/db.service';
       style({ transform: 'scale(0.5)', opacity: 0 }),
       animate('1s ease-in',
       style({ transform: 'scale(1)', opacity: 1 }))
-      ]),
-      transition(':leave', [
-        style({ transform: 'scale(1)', opacity: 1 }),
-        animate('1.5s ease-in',
-        style({ transform: 'scale(0)', opacity: 0 }))
-        ])
+      ])
     ])
   ],
 })
@@ -28,17 +26,40 @@ import { DBService } from 'src/app/services/db.service';
 export class ShoppingListPage implements OnInit {
   list: List;
   selectedOptions: any[];
+  selectedProducts: Product[];
   constructor(private route: ActivatedRoute,
               private router: Router,
               private toastController: ToastController,
               private dbService: DBService) {
+                this.loadList();
+  }
+
+  ngOnInit() {
+    this.loadSelected();
+  }
+
+  loadList() {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.list = this.router.getCurrentNavigation().extras.state.list;
       } else {
-        this.router.navigate(['./menu/tabs/shopping-lists']);
+        this.back();
       }
     });
+  }
+
+  loadSelected() {
+    this.selectedProducts = this.list.products.filter(product => product.isChecked === true);
+    this.dbService.update('/shoppingLists', this.list.uid, this.list);
+  }
+
+  selectAll() {
+    if (this.selectedProducts.length === this.list.products.length) {
+      this.list.products.map(product => product.isChecked = false);
+    } else {
+      this.list.products.map(product => product.isChecked = true);
+    }
+    this.loadSelected();
   }
 
   delete() {
@@ -59,18 +80,15 @@ export class ShoppingListPage implements OnInit {
     return result.toString().length > 3 ? result.toFixed(1) : result;
   }
 
-  back() {
-    this.router.navigate(['./menu/tabs/shopping-lists']);
-  }
-
-  ngOnInit() {
-  }
-
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,
       duration: 2000
     });
     toast.present();
+  }
+
+  back() {
+    this.router.navigate(['./menu/tabs/shopping-lists']);
   }
 }

@@ -9,6 +9,24 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+@import url('https://fonts.googleapis.com/css?family=Ranga&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+.bc-light-blue {
+    background: rgb(12, 173, 179);
+}
+
+.fc-light-blue {
+    color: rgb(12, 173, 179);
+}
+
+.fc-light {
+    color: rgb(255, 255, 255);
+}
+
+.title {
+    font-family: 'Lobster', cursive;
+    font-size: 22px;
+}
 
 .centralized {
     margin-left: auto;

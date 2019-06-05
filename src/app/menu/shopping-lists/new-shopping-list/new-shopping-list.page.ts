@@ -53,10 +53,30 @@ export class NewShoppingListPage implements OnInit {
     });
   }
 
+  saveAndAddProduct() {
+    if (!this.validateProducts(this.newProduct, this.products)) {
+      this.dbService.insertInList<Product>('/products', this.newProduct)
+      .then(() => {
+        this.newProduct = this.products[this.products.length - 1];
+        this.addProduct(this.newProduct);
+      }).catch(error => {
+        console.log(error);
+      });
+    } else {
+      const productFiltered = this.products.filter(product => {
+        if (this.newProduct.name === product.name
+          && this.newProduct.weight === product.weight
+          && this.newProduct.measureUnit === product.measureUnit) {
+          return true;
+        } else {
+          return false;
+        }
+      })[0];
+      this.addProduct(productFiltered);
+    }
+  }
+
   addProduct(product: Product) {
-    product.quantity = 0;
-    product['uidTemporary'] = this.uidTemporary;
-    this.uidTemporary++;
     if (this.validateProducts(product, this.newList.products)) {
       this.presentToast(`O produto "${product.name}" já foi adicionado a sua lista`);
     } else {
@@ -71,16 +91,6 @@ export class NewShoppingListPage implements OnInit {
   }
 
   saveList() {
-    this.newList.products.forEach(product => {
-      delete product['uidTemporary'];
-      if (product.uid === undefined && !this.validateProducts(product, this.products)) {
-          this.dbService.insertInList<Product>('/products', product)
-        .then(() => {
-        }).catch(error => {
-          console.log(error);
-        });
-      }
-    });
     this.newList.favorite = false;
     this.dbService.insertInList<List>('/shoppingLists', this.newList)
       .then(() => {
@@ -95,19 +105,20 @@ export class NewShoppingListPage implements OnInit {
   validateProducts(product: Product, products: Product[]) {
     let exists = false;
     products.forEach(item => {
-      if (item.name === product.name && item.weight === product.weight && item.measureUnit === product.measureUnit) {
+      if (item.name.toLowerCase() === product.name.toLowerCase()
+      && item.weight === product.weight && item.measureUnit === product.measureUnit) {
         exists = true;
-        }
+      }
     });
     return exists;
   }
 
   setQuantity(product: Product, some: boolean) {
     this.newList.products.forEach(item => {
-      if (item['uidTemporary'] === product['uidTemporary']) {
+      if (item.uid === product.uid) {
         if (some) {
           item.quantity++;
-        } else if (!some && item.quantity > 0) {
+        } else if (!some && item.quantity > 1) {
           item.quantity--;
         }
       }
@@ -115,7 +126,7 @@ export class NewShoppingListPage implements OnInit {
   }
 
   deleteItem(product: Product) {
-    this.newList.products = this.newList.products.filter(item => item['uidTemporary'] !== product['uidTemporary']);
+    this.newList.products = this.newList.products.filter(item => item.uid !== product.uid);
     if (product.uid !== undefined) {
       this.products.push(product);
     }
@@ -125,6 +136,8 @@ export class NewShoppingListPage implements OnInit {
   resetItem() {
     this.newProduct = new Product();
     this.newProduct.name = '';
+    this.newProduct.quantity = 1;
+    this.newProduct.isChecked = false;
   }
   resetShopList() {
     this.newList = new List();
