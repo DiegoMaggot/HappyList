@@ -3,6 +3,7 @@ export class Ingredient {
     uid: string;
     name: string;
     quantity: number;
+    weight: number;
     measureUnit: string;
-    image: string;
+    categoryUID: string;
 }

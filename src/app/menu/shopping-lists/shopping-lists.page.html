@@ -1,11 +1,12 @@
 <ion-header>
     <mat-toolbar class="bc-light-blue">
         <ion-title text-center class="title fc-light">Minhas listas</ion-title>
+        <span class="example-spacer"></span>
         <ion-buttons slot="end">
-            <ion-button [routerLink]="['new-list']" color="light">
-                <ion-icon slot="icon-only" name="add"></ion-icon>
-            </ion-button>
-        </ion-buttons>
+                <ion-button [routerLink]="['new-list']" color="light">
+                    <ion-icon slot="icon-only" name="add"></ion-icon>
+                </ion-button>
+            </ion-buttons>
     </mat-toolbar>
 </ion-header>
 <ion-content>
@@ -24,6 +25,7 @@
         </div>
         <div *ngIf="lists.length > 0">
             <ion-card @load *ngFor="let list of lists">
+                <div class="card" style="width: 100%; height: 100%; filter: blur(2px);"></div>
                 <ion-item lines="none">
                     <ion-icon color="danger" name="heart" slot="end" *ngIf="list.favorite" (click)="setFavorite(list)"></ion-icon>
                     <ion-icon style="color: #da090960;" name="heart" slot="end" *ngIf="!list.favorite " (click)="setFavorite(list)"></ion-icon>

@@ -4,5 +4,8 @@ export class Product {
     weight: number;
     measureUnit: string;
     quantity: number;
+    price: number;
+    categoryUID: string;
+    image: string;
     isChecked: boolean;
 }

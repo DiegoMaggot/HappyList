@@ -24,37 +24,16 @@
         <mat-step [stepControl]="secondFormGroup">
             <ng-template matStepLabel>Adicionar produtos</ng-template>
             <button mat-raised-button (click)="selectProduct()" class="choiceOption" [disabled]="!products || products.length == 0">Escolher</button>
-            <button mat-raised-button (click)="registerProduct()" class="newOption">Novo</button>
+            <button mat-raised-button (click)='createProduct()' class="newOption">Novo</button>
             <div *ngIf="selectOption" class="options">
                 <mat-form-field>
                     <mat-select [(ngModel)]="newProduct" placeholder="Escolher Produto:" required>
                         <mat-option *ngFor="let product of products" [value]="product">{{product.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <button mat-button (click)="addProduct(newProduct)" [disabled]="newProduct.name == ''">
+                <button mat-button (click)="addProduct(newProduct)" [disabled]="newProduct.name == '' || validateProducts(newProduct, this.newList.products)">
                     Adicionar
                 </button>
-            </div>
-            <div *ngIf="newOption" class="options">
-                <mat-form-field>
-                    <input matInput [(ngModel)]="newProduct.name" type="text" maxlength="35" placeholder="Nome">
-                    <mat-hint align="end"> {{newProduct.name.length}} / 35</mat-hint>
-                </mat-form-field>
-                <div class="mid">
-                    <mat-form-field>
-                        <input matInput [(ngModel)]="newProduct.weight" type="number" placeholder="Peso">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-select [(ngModel)]="newProduct.measureUnit" placeholder="Unidade de medida" selected="">
-                            <mat-option>Nenhum</mat-option>
-                            <mat-option value="Kg">Quilograma</mat-option>
-                            <mat-option value="g">Grama</mat-option>
-                            <mat-option value="L">Litro</mat-option>
-                            <mat-option value="ml">Mililitro</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <button mat-raised-button (click)="saveAndAddProduct()" [disabled]="!newProduct.name || !newProduct.weight || !newProduct.measureUnit || validateProducts(newProduct, this.newList.products)" class="add">Adicionar Produto</button>
             </div>
             <div class="stepperBtn">
                 <button mat-button matStepperPrevious>Voltar</button>

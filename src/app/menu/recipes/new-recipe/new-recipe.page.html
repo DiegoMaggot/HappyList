@@ -10,5 +10,31 @@
 </ion-header>
 
 <ion-content>
-
+    <div class="recipe-avatar">
+        <img src="https://cdn.dribbble.com/users/788099/screenshots/5024665/scrambled_eggs_funny_kit8-net.png" alt="User Avatar">
+    </div>
+    <mat-card class="centralized form">
+        <mat-form-field>
+            <input matInput type="text" [(ngModel)]="newRecipe.name" maxlength="30" placeholder="Nome" required>
+            <mat-hint align="end"> {{newRecipe.name.length}} / 30</mat-hint>
+        </mat-form-field>
+        <label id="example-radio-group-label">Dificuldade:</label>
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="newRecipe.dificulty">
+            <mat-radio-button class="example-radio-button" *ngFor="let level of levels" [value]="level" color="primary">
+                {{level}}
+            </mat-radio-button>
+        </mat-radio-group>
+        <div class="mid-form">
+            <mat-form-field>
+                <input matInput type="number" [(ngModel)]="newRecipe.duration" placeholder="Duração" required>
+                <mat-icon matPrefix>timer</mat-icon>
+                <span matSuffix>Min &nbsp;</span>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="number" [(ngModel)]="newRecipe.servings" placeholder="Porções" required>
+                <mat-icon matPrefix>restaurant_menu</mat-icon>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button class="btn-add" (click)="addIngredientPage()">Ingredientes</button>
+    </mat-card>
 </ion-content>

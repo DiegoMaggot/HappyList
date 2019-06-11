@@ -1,5 +1,7 @@
 {
   "name": "happyList",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

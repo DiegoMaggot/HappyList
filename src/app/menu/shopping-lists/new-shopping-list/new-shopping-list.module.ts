@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NewShoppingListPage } from './new-shopping-list.page';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,6 +13,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
+
+import { NewShoppingListPage } from './new-shopping-list.page';
+import { NewProductPage } from './new-product/new-product.page';
 
 const routes: Routes = [
   {
@@ -37,6 +39,7 @@ const routes: Routes = [
     MatToolbarModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [NewShoppingListPage]
+  declarations: [NewShoppingListPage, NewProductPage],
+  entryComponents: [NewProductPage]
 })
 export class NewShoppingListPageModule {}

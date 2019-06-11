@@ -1,0 +1,47 @@
+.recipe-avatar {
+    width: 100%;
+    height: 150px;
+    img {
+        width: 100%;
+        height: 100%;
+        border-radius: 0px;
+        // box-shadow: 0 1px 2px rgba(0, 0, 0, .7);
+    }
+}
+
+.form {
+    margin-top: -20px;
+    width: 95%;
+    height: 60%;
+    mat-form-field {
+        width: 100%;
+        margin-top: 0;
+    }
+    .mid-form {
+        mat-form-field {
+            width: 40%!important;
+            input {
+                text-align: center;
+            }
+        }
+        mat-form-field:last-of-type {
+            float: right;
+        }
+    }
+    .example-radio-group {
+        display: flex;
+        flex-direction: row;
+        margin: 15px 0;
+    }
+    .example-radio-button {
+        margin-right: auto;
+    }
+    .btn-add {
+        width: 30%;
+        background: #f94929;
+        color: white;
+        border-radius: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

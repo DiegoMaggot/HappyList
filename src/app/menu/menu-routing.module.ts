@@ -25,6 +25,11 @@ const routes: Routes = [
                     loadChildren: './shopping-lists/shopping-list/shopping-list.module#ShoppingListPageModule'
                 }
             ]},
+            { path: 'products', children: [
+                {
+                    path: '', loadChildren: './products/products.module#ProductsPageModule'
+                }
+            ]},
             {   path: 'recipes', children: [
                 {
                     path: '',
@@ -35,13 +40,17 @@ const routes: Routes = [
                     loadChildren: './recipes/new-recipe/new-recipe.module#NewRecipePageModule'
                 },
                 {
+                    path: 'new-recipe/new-ingredient',
+                    loadChildren: './recipes/new-recipe/new-ingredient/new-ingredient.module#NewIngredientPageModule'
+                },
+                {
                     path: 'edit-recipe',
                     loadChildren: './recipes/edit-recipe/edit-recipe.module#EditRecipePageModule'
+                },
+                {
+                    path: 'details/:recipe',
+                    loadChildren: './recipes/recipe/recipe.module#RecipePageModule'
                 }
-                // {
-                //     path: ':recipeId',
-                //     loadChildren: './recipes/recipe/recipe.module#RecipePageModule'
-                // }
             ]},
             {   path: 'cart', children: [
                 {
