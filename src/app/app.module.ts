@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatIconModule } from '@angular/material/icon';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -24,6 +25,7 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    MatIconModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase)],
   providers: [

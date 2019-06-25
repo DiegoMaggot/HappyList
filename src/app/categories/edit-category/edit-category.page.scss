@@ -1,0 +1,50 @@
+mat-form-field {
+    width: 100%;
+    padding: 5px;
+}
+
+mat-icon {
+    width: 30px;
+    height: 30px;
+}
+
+form {
+    width: 95%;
+    margin-top: 20px;
+    padding: 5px;
+}
+
+p {
+    padding-left: 5px;
+    color: rgb(57, 77, 167);
+}
+
+.btn-save {
+    width: 25%;
+    margin-top: 15px;
+    button {
+        width: 100%;
+        background: rgb(148, 109, 159);
+        color: #fff;
+        border-radius: 10px;
+    }
+}
+
+ion-content {
+    // --background: url(https://cdn.dribbble.com/users/1200652/screenshots/3912757/january.jpg);
+    // --background: url(https://cdn.dribbble.com/users/2061448/screenshots/5541442/66.jpg);
+    --background: url(https://cdn.dribbble.com/users/2061448/screenshots/5541451/67.jpg);
+}
+
+.category-icon {
+    position: absolute;
+    margin-top: -45px;
+    margin-left: 68%;
+}
+
+@media (min-width: 568px) {
+    .category-icon {
+        position: absolute;
+        margin-left: 60%;
+    }
+}

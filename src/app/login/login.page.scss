@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Laila');
+@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
+h3 {
+    font-size: 25px;
+    font-family: 'Lobster', cursive;
+    color: #098492cc;
+    text-align: center;
+    padding: 10px;
+    color: rgb(255, 255, 255)
+}
+
+.confirm {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    --color: #098492cc;
+    margin-top: 30px;
+    --background: #07e99ebd;
+}
+
+.register {
+    margin-top: 10px;
+    --color: #10caabb4;
+}
+
+.forgot-pass {
+    font-size: 12px;
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.item {
+    display: block;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    --color: #098492cc;
+    --background: #0cd2e800;
+}
+
+.icon:first-of-type {
+    --margin-left: 15px;
+}
+
+.icon {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.logo-label {
+    font-size: 12px;
+    flex: 1 1 auto;
+    text-align: center;
+    color: #3880ff;
+}
+
+h3 {
+    color: #098492cc;
+}

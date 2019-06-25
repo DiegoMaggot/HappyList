@@ -11,12 +11,13 @@
 @import '~@ionic/angular/css/flex-utils.css';
 @import url('https://fonts.googleapis.com/css?family=Ranga&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap');
 .bc-light-blue {
-    background: rgb(12, 173, 179);
+    --background: rgb(12, 173, 179);
 }
 
 .fc-light-blue {
-    color: rgb(12, 173, 179);
+    --color: rgb(12, 173, 179);
 }
 
 .fc-light {
@@ -24,11 +25,39 @@
 }
 
 .title {
-    font-family: 'Lobster', cursive;
     font-size: 22px;
+}
+
+.f-lobster {
+    font-family: 'Lobster', cursive;
+}
+
+.f-ubuntu {
+    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
 .centralized {
     margin-left: auto;
     margin-right: auto;
+}
+
+.no-data {
+    margin-top: 20%;
+}
+
+@media (min-width: 568px) {
+    .no-data-image {
+        width: 40%;
+        margin-top: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .no-data {
+        margin-top: 0;
+    }
+}
+
+ion-menu ion-header ion-toolbar {
+    background-size: contain;
+    --background: url("assets/img/background.jpg") center / cover;
 }

@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button (click)="back()" color="light">
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title text-center class="title f-lobster">Nova lista</ion-title>
+        <ion-buttons slot="end">
+            <button mat-icon-button (click)="saveList()" [disabled]="newList.name == '' || newList.products.length == 0">
+                <mat-icon>check_mark</mat-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <mat-form-field class="f-ubuntu">
+        <input matInput type="text" [(ngModel)]="newList.name" maxlength="35" placeholder="Nome" required>
+        <mat-hint align="end"> {{newList.name.length}} / 35</mat-hint>
+    </mat-form-field>
+    <p class="f-lobster" text-center>Adicionar produtos</p>
+    <div class="add-product">
+        <mat-form-field class="f-ubuntu">
+            <mat-select [(ngModel)]="selectedProduct" placeholder="Escolher Produto:" required>
+                <mat-option *ngFor="let product of products" [value]="product">{{product.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button slot="end" mat-icon-button (click)="addProduct(selectedProduct)" [disabled]="validateProducts(selectedProduct, this.newList.products)">
+                    <mat-icon>add</mat-icon>
+            </button>
+    </div>
+    <p class="f-lobster" text-center>{{newList.products.length > 0 ? 'Meus Produtos' : 'Lista vazia'}}</p>
+    <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let product of newList.products">
+            <ion-grid fixed>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-item-sliding>
+                            <ion-item expand="full" no-padding>
+                                <ion-label lines="none" no-padding>
+                                    <p class="f-ubuntu">{{product.name}}</p>
+                                </ion-label>
+                                <button mat-icon-button (click)="setQuantity(product, false)"><mat-icon>remove</mat-icon></button>
+                                <p class="f-ubuntu">{{product.quantity}}</p>
+                                <button mat-icon-button (click)="setQuantity(product, true)"><mat-icon>add</mat-icon></button>
+                            </ion-item>
+                            <ion-item-options side="end">
+                                <ion-item-option no-padding color="light" lines="none">
+                                    <button mat-icon-button (click)="deleteItem(product)"><mat-icon>delete</mat-icon></button>
+                                </ion-item-option>
+                            </ion-item-options>
+                        </ion-item-sliding>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </mat-list-item>
+    </mat-list>
+</ion-content>

@@ -4,12 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
-import { RegisterPage } from './register.page';
+import { CategoriesPage } from './categories.page';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 const routes: Routes = [
   {
     path: '',
-    component: RegisterPage
+    component: CategoriesPage
   }
 ];
 
@@ -18,8 +21,11 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [RegisterPage]
+  declarations: [CategoriesPage],
 })
-export class RegisterPageModule {}
+export class CategoriesPageModule {}

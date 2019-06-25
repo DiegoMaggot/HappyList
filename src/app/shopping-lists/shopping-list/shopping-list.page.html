@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-toolbar class="bc-light-blue">
+        <ion-buttons slot="start">
+            <ion-button (click)="back()" color="light">
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title text-center class="title fc-light">{{list.name}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="centralized percentage-info">
+        <mat-progress-spinner class="centralized spinner" color="primary" mode='determinate' [value]='listPercentage(selectedProducts.length)'>
+        </mat-progress-spinner>
+        <div class="centralized percentage">{{listPercentage(selectedProducts.length)}}%</div>
+    </div>
+
+    <div class="info">
+        <ion-label text-center>
+            <h4 text-center>Itens</h4>
+            <p text-center>{{selectedProducts.length}}/{{list.products.length}}</p>
+        </ion-label>
+    </div>
+
+    <ion-list>
+        <ion-item no-padding>
+            <ion-grid fixed>
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-label>Nome</ion-label>
+                    </ion-col>
+                    <ion-col size="4">
+                        <ion-label>
+                            <p text-center>Peso</p>
+                        </ion-label>
+                    </ion-col>
+                    <ion-col size="4">
+                        <ion-label>
+                            <p text-center>Unidade(s)</p>
+                        </ion-label>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-checkbox slot="end" (click)="selectAll()"></ion-checkbox>
+        </ion-item>
+        <ion-item *ngFor="let product of list.products" (click)="loadSelected()" no-padding>
+            <ion-grid fixed>
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-label>{{product.name}}</ion-label>
+                    </ion-col>
+                    <ion-col size="4">
+                        <ion-label>
+                            <p text-center>{{product.weight}}{{product.measureUnit}}</p>
+                        </ion-label>
+                    </ion-col>
+                    <ion-col size="4">
+                        <ion-label>
+                            <p text-center>{{product.quantity}} {{product.quantity != 1 ? 'Unidades' : 'Unidade'}}</p>
+                        </ion-label>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-checkbox slot="end" [(ngModel)]="product.isChecked"></ion-checkbox>
+        </ion-item>
+    </ion-list>
+</ion-content>

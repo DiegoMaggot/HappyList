@@ -1,0 +1,79 @@
+<ion-header>
+    <ion-toolbar class="bc-light-blue">
+        <ion-buttons slot="start">
+            <ion-menu-button color="light"></ion-menu-button>
+        </ion-buttons>
+        <ion-title text-center class="title f-lobster" color="light">Produtos</ion-title>
+        <ion-buttons slot="end">
+            <ion-button routerLink='new-product'>
+                <ion-icon slot="icon-only" name="add" color="light"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="loading">
+        <ion-list>
+            <ion-item *ngFor="let item of [0, 1, 2, 4, 5]">
+                <ion-thumbnail slot="start">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-thumbnail>
+                <ion-label>
+                    <h3>
+                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                    </h3>
+                    <p>
+                        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                    </p>
+                    <p>
+                        <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+                    </p>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div *ngIf="!loading">
+        <div class="no-data" *ngIf="products.length == 0">
+            <ion-img src="../../../assets/img/no-products.jpg" class="no-data-image"></ion-img>
+            <ion-label>
+                <p text-center class="f-lobster">Você não possuí nenhum produto.</p>
+            </ion-label>
+        </div>
+        <div *ngIf="products.length > 0">
+            <ion-searchbar (input)="search($event)" placeholder="buscar"></ion-searchbar>
+            <ion-list>
+                <ion-card class="centralized" *ngFor="let product of products" no-padding>
+                    <div class="image"><img src={{getImage(product)}}></div>
+                    <div class="card-content">
+                        <ion-item lines="none">
+                            <button mat-icon-button slot="end" [matMenuTriggerFor]="menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="edit(product)">
+                                            <mat-icon>create</mat-icon>
+                                            <span>Editar</span>
+                                        </button>
+                                <button mat-menu-item (click)="remove(product.uid)">
+                                            <mat-icon>delete</mat-icon>
+                                            <span>Remover</span>
+                                        </button>
+                            </mat-menu>
+                            <ion-label length="12">
+                                {{product.name}}
+                                <p>{{product.category}}</p>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item style="margin-top: -14px;">
+                            <ion-label>
+                                <p>R$ {{product.price}}</p>
+                                <p>{{product.weight}}{{product.measureUnit}}</p>
+                            </ion-label>
+                        </ion-item>
+                    </div>
+                </ion-card>
+            </ion-list>
+        </div>
+    </div>
+</ion-content>

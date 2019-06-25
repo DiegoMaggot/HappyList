@@ -1,9 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content padding>
+    <H3 class="title f-lobster" text-center>Happy List</H3>
+    <img src="../../assets/img/shopping.jpg" alt="Logo">
+    <ion-item class="item">
+        <ion-label position="stacked">Login</ion-label>
+        <ion-input [(ngModel)]="email" type="email"></ion-input>
+    </ion-item>
+    <ion-item class="item">
+        <ion-label position="stacked">Senha</ion-label>
+        <ion-input [(ngModel)]="password" type="password"></ion-input>
+    </ion-item>
+    <ion-button (click)="login()" shape="round" expand="full" class="confirm">
+        Confirmar
+    </ion-button>
+    <ion-item lines="none">
+        <ion-label (click)="register()" text-center class="f-lobster register">
+            Registrar-se
+        </ion-label>
+    </ion-item>
 
-<ion-content>
-
+    <ion-item lines="none">
+        <ion-label *ngIf="tentativas >= 3" class="forgot-pass" (click)="register()">Esqueceu a senha ?</ion-label>
+    </ion-item>
 </ion-content>

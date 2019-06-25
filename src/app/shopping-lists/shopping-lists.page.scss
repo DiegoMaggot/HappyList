@@ -1,0 +1,42 @@
+.image ion-img {
+    height: 100%;
+    overflow: hidden;
+}
+
+.spinner {
+    margin-top: 45%;
+}
+
+.content {
+    width: 100%;
+    margin-top: -20px;
+    h4 {
+        width: 100%;
+        font-size: 20px;
+    }
+}
+
+.no-lists {
+    margin-top: 30%;
+}
+
+@media (min-width: 568px) {
+    .image {
+        width: 40%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+ion-item {
+    --background: none;
+    .products {
+        margin-left: 15%;
+        margin-top: 7px;
+    }
+    .icon {
+        mat-icon {
+            position: absolute;
+        }
+    }
+}

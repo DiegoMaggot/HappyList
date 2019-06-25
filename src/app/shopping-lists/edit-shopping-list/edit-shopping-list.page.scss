@@ -1,0 +1,32 @@
+mat-form-field {
+    width: 100%;
+    padding: 5px;
+}
+
+.add-product {
+    mat-form-field {
+        width: 85%;
+    }
+}
+
+.add {
+    background: #26bb70c2;
+    color: rgb(255, 255, 255);
+    width: 100%;
+}
+
+.list-items {
+    mat-list-item {
+        padding: 0!important;
+    }
+}
+
+.btn-confirm {
+    width: 25%;
+    margin-top: 5px;
+    button {
+        width: 100%;
+        background: rgba(17, 219, 108, 0.87);
+        color: #fff;
+    }
+}

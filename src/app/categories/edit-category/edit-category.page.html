@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-toolbar color="tertiary">
+        <ion-buttons slot="start">
+            <ion-button (click)="back()" color="light">
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title text-center class="title f-lobster fc-light">Editar categoria</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="centralized form" *ngIf="!loading">
+        <mat-form-field class="f-lobster">
+            <input matInput type="text" [(ngModel)]="category.name" maxlength="35" placeholder="Nome" required>
+            <mat-hint align="end"> {{category.name.length}} / 35</mat-hint>
+        </mat-form-field>
+        <p class="f-lobster" text-center>{{category.icon ? 'Ícone escolhido:' : 'Escolha um ícone'}}</p>
+        <div class="category-icon" *ngIf="category.icon">
+            <mat-icon><img src="../../../assets/icon/{{category.icon}}.png"></mat-icon>
+        </div>
+        <div style="margin-top: 5px;" *ngIf="!loading">
+            <div *ngFor="let icon of iconList">
+                <p class="f-lobster">{{icon.name}}</p>
+                <ion-slides [options]="sliderConfig">
+                    <ion-slide *ngFor="let icon of icon.icons">
+                        <button mat-icon-button (click)="selected(icon)">
+                        <mat-icon><img src="../../../assets/icon/{{icon}}.png"></mat-icon>
+                    </button>
+                    </ion-slide>
+                </ion-slides>
+            </div>
+        </div>
+        <div class="centralized btn-save">
+            <button mat-button class="f-lobster" (click)="edit()" [disabled]="!category.name || !category.icon">Editar</button>
+        </div>
+    </div>
+</ion-content>

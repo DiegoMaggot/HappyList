@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button (click)="back()" color="light">
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title text-center class="title f-lobster">Novo Produto</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div class="picture centralized">
+        <img src={{getImage()}}>
+    </div>
+    <button mat-icon-button class="camera-btn" (click)="takePhoto()"><mat-icon>camera_alt</mat-icon></button>
+    <div class="container">
+        <ion-item-sliding>
+            <ion-item no-padding lines="none">
+                <mat-form-field>
+                    <input matInput [(ngModel)]="newProduct.name" placeholder="Nome">
+                </mat-form-field>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option no-padding color="light" lines="none">
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="newProduct.image" placeholder="imagem path">
+                    </mat-form-field>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+        <mat-form-field class="mid">
+            <input matInput placeholder="Peso" type="number" [(ngModel)]="newProduct.weight">
+        </mat-form-field>
+        <mat-form-field class="mid">
+            <mat-select [(ngModel)]="newProduct.measureUnit" placeholder="Unidade de medida" selected="">
+                <mat-option value="Kg">Quilograma</mat-option>
+                <mat-option value="g">Grama</mat-option>
+                <mat-option value="L">Litro</mat-option>
+                <mat-option value="ml">Mililitro</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Preço" type="number" [(ngModel)]="newProduct.price">
+            <span matPrefix>R$&nbsp;</span>
+        </mat-form-field>
+        <p class="f-lobster" text-center>Escolha uma categoria</p>
+        <mat-form-field>
+            <mat-select [(ngModel)]="newProduct.categoryUID" placeholder="Categoria do produto">
+                <mat-option *ngFor="let category of categories" [value]="category.uid">{{category.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button class="btn-confirm" (click)="save()" [disabled]="!newProduct.name || !newProduct.categoryUID || !newProduct.weight || !newProduct.measureUnit || !newProduct.price || newProduct.quantity <= 0">
+            Salvar
+        </button>
+    </div>
+</ion-content>

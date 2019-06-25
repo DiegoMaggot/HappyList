@@ -1,9 +1,19 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content padding>
+    <h3>Registrar-se</h3>
+    <img src="../../assets/img/shopping.jpg" alt="Logo">
 
-<ion-content>
-
+    <ion-item class="item">
+        <ion-label position="stacked">Login</ion-label>
+        <ion-input [(ngModel)]="email" type="email"></ion-input>
+    </ion-item>
+    <ion-item class="item">
+        <ion-label position="stacked">Senha</ion-label>
+        <ion-input [(ngModel)]="password" type="password"></ion-input>
+    </ion-item>
+    <ion-button (click)="register()" shape="round" expand="full" class="confirm">
+        Salvar
+    </ion-button>
+    <ion-button (click)="backToLogin()" shape="round" expand="full" class="back">
+        Voltar
+    </ion-button>
 </ion-content>
